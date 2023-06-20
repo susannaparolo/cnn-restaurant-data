@@ -1,15 +1,19 @@
-import "./App.css";
-import { Table } from "./components/table";
-import { SearchBar } from "./components/searchBar";
+import { useState } from 'react';
+import './App.css';
+import { Table } from './components/table';
+import { SearchButton } from './components/searchButton';
+import { SearchBar } from './components/searchBar';
+
 
 function App() {
-  return (
-    <div>
-      {/* Table and SearchBar imported to the main app */}
-      <SearchBar />
-      <Table />
-    </div>
-  );
+
+	return (
+		<div>
+		<SearchBar/>
+      	<SearchButton/>
+		<Table />
+		</div>
+	);
 }
 
 export default App;

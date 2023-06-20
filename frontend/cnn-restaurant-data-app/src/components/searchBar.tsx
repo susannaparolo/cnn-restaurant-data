@@ -1,8 +1,5 @@
 export function SearchBar() {
     return (
-        <form className="searchBar">
-            <input type="text" className="searchBarInput" placeholder="Search customerId">
-            </input>
-        </form>
+    <input type="text" placeholder="Search CustomerId" className="searchBarInput"></input>
     )
 }
