@@ -7,7 +7,7 @@
   - refactor: A code change that neither fixes a bug nor adds a feature
   - perf: A code change that improves performance
   - test: Adding missing tests or correcting existing tests
-  - build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+  - build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm) "~~
   - ci: Changes to our CI configuration files and scripts (example scopes: Github Actions, Jenkins, BrowserStack)
   - revert: Reverts a previous commit
 
