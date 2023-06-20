@@ -9,6 +9,7 @@
   "dependencies": {
     "@mui/material": "^5.13.5",
     "ts-node": "^10.9.1",
+    "@mui/material": "^5.13.5",
     "typescript": "^5.1.3"
   }
 }
