@@ -1,0 +1,52 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# IDE (WebStorm)
+.idea
+
+#IDE vscode
+.history
+.vscode
+
+# dependencies
+**/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# misc
+.DS_Store
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# eslint
+.eslintcache
+
+# Build outputs
+cdk.out/
+cdk.staging/
+src/**/*.js
+src/**/*.d.ts
+dist/
+tsconfig.tsbuildinfo
+
+# environment
+.env
+.envrc
+/docker/dynamodb/shared-local-instance.db
+
+# yarn package manager shenanigans
+# Uses Zero-install setup. See https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+/package-lock.json
+.yarn/*
+.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+assets/mapping*
