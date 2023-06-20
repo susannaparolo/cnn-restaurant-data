@@ -15,9 +15,11 @@ type RawPurchaseDataType = {
     date: string
     items: string
 }
+
 type FormattedDataUnit = {
 
 }
+
 const parseData = () => {
     const structuredData: any = {}
 
@@ -34,30 +36,18 @@ const parseData = () => {
                 drink.push(item)
             }
         })
-
         const purchase = {
             date: element.date,
             products: {
                 food, drink
             }
         }
-        structuredData[element.customerId].purchases = [purchase]
 
+        structuredData[element.customerId] = [purchase]
 
-        // const hasCustomerData = Boolean(structuredData[element.customerId])
-        // if (hasCustomerData) {
-        //     const existingData = structuredData[element.customerId].purchases
-        //     existingData.push(purchase)
-        //     structuredData[element.customerId].purchases = existingData
-        // } else {
-        //     structuredData[element.customerId] = {}
-        //     structuredData[element.customerId].purchases = [purchase]
-        // }
-
-        // console.log({ structuredData })
 
     })
 }
 
-parseData()
-
+const result = parseData()
+console.log(result)
