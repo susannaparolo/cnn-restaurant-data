@@ -17,8 +17,18 @@ type RawPurchaseDataType = {
 }
 
 type FormattedDataUnit = {
+    customerId: Array<Purchase>
+}
+
+type Purchase = {
+    date: string
+    products: {
+        food: string[]
+        drinks: string[]
+    }
 
 }
+
 
 const parseData = () => {
     const structuredData: any = {}
@@ -47,6 +57,7 @@ const parseData = () => {
 
 
     })
+    return structuredData
 }
 
 const result = parseData()
