@@ -20,20 +20,25 @@ export const testData = [
 export function Table(){
     return (
     <table className="table">
-				<tr className="tableHeader">
-					<th>CustomerId</th>
-					<th>Date</th>
-					<th>Items</th>
-				</tr>
-				{testData.map((val, key) => {
-					return (
-						<tr key={key}>
-							<td>{val.customerId}</td>
-							<td>{val.date}</td>
-							<td className="td">{val.items}</td>
-						</tr>
-					)
-				})}
-			</table>)
-}
+        <thead>
+            <tr className="thead">
+                <th>CustomerId</th>
+                <th>Date</th>
+                <th>Items</th>
+            </tr>
+        </thead>
+        <tbody>
+            {testData.map((val, key) => {
+                return (
+                    <tr className="trow"key={key}>
+                        <td>{val.customerId}</td>
+                        <td>{val.date}</td>
+                        <td>{val.items}</td>
+                    </tr>  
+                );
+            })};
+        </tbody>
+    </table>
+    );
+};
 
