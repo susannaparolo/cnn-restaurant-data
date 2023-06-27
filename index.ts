@@ -41,5 +41,3 @@ const parseData = () => {
   });
   return structuredData;
 };
-
-console.log(JSON.stringify(parseData()));
