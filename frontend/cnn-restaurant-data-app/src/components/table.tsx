@@ -1,4 +1,3 @@
-
 // Sample data extracted from provided dataset
 // In future this will be replaced by the formatted json data from backend
 export const testData = [
