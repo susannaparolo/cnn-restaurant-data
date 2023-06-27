@@ -6,13 +6,6 @@ import {
 
 import rawData from "./purchase-file.json";
 
-/**
- * parse items into food & drink,
- * split them
- * get an array of objects
- * key values is customer id
- */
-
 const parseData = () => {
   const structuredData: Record<string, FormattedDataUnit> = {};
 

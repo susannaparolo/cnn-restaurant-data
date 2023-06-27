@@ -5,7 +5,7 @@ type RawPurchaseDataType = {
 };
 
 type FormattedDataUnit = {
-  purchases: Purchase[]
+  purchases: Purchase[];
 };
 
 type Purchase = {
@@ -16,4 +16,4 @@ type Purchase = {
   };
 };
 
-export { RawPurchaseDataType, FormattedDataUnit, Purchase}
+export { RawPurchaseDataType, FormattedDataUnit, Purchase };
