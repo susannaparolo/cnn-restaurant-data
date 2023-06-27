@@ -1,3 +1,6 @@
+
+// Sample data extracted from provided dataset
+// In future this will be replaced by the formatted json data from backend
 export const testData = [
   {
     customerId: "6a6f2647-216a-4e59-b3e5-aa8babb212c6",
@@ -17,6 +20,7 @@ export const testData = [
   },
 ];
 
+// Main table component
 export function Table() {
   return (
     <table className="table">
@@ -28,6 +32,7 @@ export function Table() {
         </tr>
       </thead>
       <tbody>
+        {/* testData provided above is mapped in each table row */}
         {testData.map((val, key) => {
           return (
             <tr className="trow" key={key}>
