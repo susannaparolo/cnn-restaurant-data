@@ -7,6 +7,7 @@
     "test-data": "yarn ts-node index.ts"
   },
   "dependencies": {
+    "jest": "^29.5.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.3"
   }
