@@ -6,7 +6,7 @@ import {
 
 import rawData from "./purchase-file.json";
 
-const parseData = () => {
+const parseData = (rawData) => {
   const structuredData: Record<string, FormattedDataUnit> = {};
 
   rawData.forEach((element: RawPurchaseDataType) => {
@@ -34,3 +34,5 @@ const parseData = () => {
   });
   return structuredData;
 };
+
+console.log(JSON.stringify(parseData()))
