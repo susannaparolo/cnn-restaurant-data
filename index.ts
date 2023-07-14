@@ -3,45 +3,35 @@ import {
 	Purchase,
 	RawPurchaseDataType,
 } from "./types/types";
-import rawData from "./raw-data.json";
+import rawData from "./data/raw-data.json";
 import fs from "fs";
+import { getProductsByPrefix } from "./utils/get-products-by-prefix";
 
-const getProductsByPrefix = (input: string) => {
-	const allItems = input.split(",");
-	const food: Array<string> = [];
-	const drinks: Array<string> = [];
-	allItems.forEach((item: string) => {
-		if (item.includes("FOOD")) {
-			food.push(item);
-		} else if (item.includes("DRINK")) {
-			drinks.push(item);
-		} else {
-			throw new Error(
-				`This item has unknown prefix ${item} -- not FOOD or DRINK`
-			);
-		}
-	});
-	return { food, drinks };
-};
+const parseData = (data: RawPurchaseDataType[]): Record<string, FormattedDataUnit> => {
+	// creating an empty obj with specified types
+	const initialData: Record<string, FormattedDataUnit> = {};
 
-const parseData = (data: RawPurchaseDataType[]) => {
-	const initialData: any = {};
-
+	// traversing through the raw data array
 	data.forEach((dataElement: RawPurchaseDataType) => {
 		const productsData = getProductsByPrefix(dataElement.items);
 
-		const purchase = {
+		// joining all the data to fit the preffered type "Purchase"
+		const purchase: Purchase = {
 			date: dataElement.date,
 			products: productsData,
 		};
+
+		// check if we already have some data for this customer
 		const hasThisCustomerAlready = Boolean(initialData[dataElement.customerId]);
 
 		if (hasThisCustomerAlready) {
 			const existingPurchases = initialData[dataElement.customerId].purchases;
 			existingPurchases.push(purchase);
+			// adding purchase data to property "purchases" with pre existing data
 			initialData[dataElement.customerId].purchases = existingPurchases;
 		} else {
-			initialData[dataElement.customerId] = {};
+			initialData[dataElement.customerId] = {} as FormattedDataUnit;
+			// adding purchase data to property "purchases"
 			initialData[dataElement.customerId].purchases = [purchase];
 		}
 	});
@@ -49,10 +39,9 @@ const parseData = (data: RawPurchaseDataType[]) => {
 	return initialData;
 };
 
-const result = parseData(rawData);
 
-console.log({ result });
-fs.writeFile("formatted-data.json", JSON.stringify(result), (err) => {
+const result = parseData(rawData);
+fs.writeFile("./data/formatted-data.json", JSON.stringify(result), (err) => {
 	if (err) {
 		console.error(err);
 	}
