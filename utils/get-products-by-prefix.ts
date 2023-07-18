@@ -8,18 +8,15 @@ export const getProductsByPrefix = (input: string) => {
 	const allItems = input.split(",");
 	const food: Array<string> = [];
 	const drinks: Array<string> = [];
+	const uncategorized: Array<string> = [];
 	allItems.forEach((item: string) => {
 		if (item.includes("FOOD")) {
 			food.push(item);
 		} else if (item.includes("DRINK")) {
 			drinks.push(item);
-		} else {
-			throw new Error(
-				`This item has unknown prefix ${item} -- not FOOD or DRINK`
-			);
-		}
+		} else (uncategorized.push(item))
 	});
 
 
-	return { food, drinks };
+	return { food, drinks, uncategorized };
 };
