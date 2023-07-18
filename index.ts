@@ -1,36 +1,48 @@
 import {
-  FormattedDataUnit,
-  Purchase,
-  RawPurchaseDataType,
+	FormattedDataUnit,
+	Purchase,
+	RawPurchaseDataType,
 } from "./types/types";
+import rawData from "./data/raw-data.json";
+import fs from "fs";
+import { getProductsByPrefix } from "./utils/get-products-by-prefix";
 
-import rawData from "./purchase-file.json";
+const parseData = (data: RawPurchaseDataType[]): Record<string, FormattedDataUnit> => {
+	// creating an empty obj with specified types
+	const initialData: Record<string, FormattedDataUnit> = {};
 
-const parseData = () => {
-  const structuredData: Record<string, FormattedDataUnit> = {};
+	// traversing through the raw data array
+	data.forEach((dataElement: RawPurchaseDataType) => {
+		const productsData = getProductsByPrefix(dataElement.items);
 
-  rawData.forEach((element: RawPurchaseDataType) => {
-    const allItems = element.items.split(",");
-    const food: Array<string> = [];
-    const drinks: Array<string> = [];
+		// joining all the data to fit the preffered type "Purchase"
+		const purchase: Purchase = {
+			date: dataElement.date,
+			products: productsData,
+		};
 
-    allItems.forEach((item: string) => {
-      if (item.includes("FOOD")) {
-        food.push(item);
-      } else {
-        drinks.push(item);
-      }
-    });
-    const purchase: Purchase = {
-      date: element.date,
-      products: {
-        food,
-        drinks,
-      },
-    };
-    structuredData[element.customerId] = {
-      purchases: [purchase],
-    };
-  });
-  return structuredData;
+		// check if we already have some data for this customer
+		const hasThisCustomerAlready = Boolean(initialData[dataElement.customerId]);
+
+		if (hasThisCustomerAlready) {
+			const existingPurchases = initialData[dataElement.customerId].purchases;
+			existingPurchases.push(purchase);
+			// adding purchase data to property "purchases" with pre existing data
+			initialData[dataElement.customerId].purchases = existingPurchases;
+		} else {
+			initialData[dataElement.customerId] = {} as FormattedDataUnit;
+			// adding purchase data to property "purchases"
+			initialData[dataElement.customerId].purchases = [purchase];
+		}
+	});
+
+	return initialData;
 };
+
+
+const result = parseData(rawData);
+fs.writeFile("./data/formatted-data.json", JSON.stringify(result), (err) => {
+	if (err) {
+		console.error(err);
+	}
+});
