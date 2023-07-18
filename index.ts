@@ -4,10 +4,10 @@ import {
 	RawPurchaseDataType,
 } from "./types/types";
 import rawData from "./data/raw-data.json";
-import fs from "fs";
+// import fs from "fs";
 import { getProductsByPrefix } from "./utils/get-products-by-prefix";
 
-const parseData = (data: RawPurchaseDataType[]): Record<string, FormattedDataUnit> => {
+export const parseData = (data: RawPurchaseDataType[]): Record<string, FormattedDataUnit> => {
 	// creating an empty obj with specified types
 	const initialData: Record<string, FormattedDataUnit> = {};
 
@@ -40,9 +40,9 @@ const parseData = (data: RawPurchaseDataType[]): Record<string, FormattedDataUni
 };
 
 
-const result = parseData(rawData);
-fs.writeFile("./data/formatted-data.json", JSON.stringify(result), (err) => {
-	if (err) {
-		console.error(err);
-	}
-});
+// const result = parseData(rawData);
+// fs.writeFile("./data/formatted-data.json", JSON.stringify(result), (err) => {
+// 	if (err) {
+// 		console.error(err);
+// 	}
+// });
